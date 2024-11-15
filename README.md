@@ -3,7 +3,6 @@
 ## Authors
 - **Cosimo Curri (ER1792)**
 - **Selma Jawhari Idrissi (ER1793)**
-
 ## Course
 - **Semantic Web and Social Networks**
 
