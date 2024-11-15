@@ -1,0 +1,16 @@
+{
+  "name": "node_ringo",
+  "version": "1.0.0",
+  "description": "node_ringo",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Cosimo Curri, Selma Jawhari Idrissi",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0",
+    "nodemon": "^3.1.6"
+  }
+}

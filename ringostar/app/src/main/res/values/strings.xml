@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">ringo-star</string>
+
+    <string name="cancel">CANCEL</string>
+    <string name="delete">DELETE</string>
+
+    <string name="content_description_purple_logo">Purple Logo</string>
+    <string name="content_description_white_logo">White Logo</string>
+
+    <string name="magic_hint_model">LLM Inference Model</string>
+
+    <string name="gemma2b">Gemma 2B</string>
+    <string name="falcon_rw1b">Falcon-RW-1B</string>
+    <string name="stable_lm3b">StableLM-3B</string>
+    <string name="phi2">Phi-2</string>
+
+    <string name="gemma2b_hint">&lt;strong&gt;&lt;u&gt;Gemma 2B&lt;/u&gt;&lt;/strong&gt; is a model with &lt;strong&gt;2 billion parameters&lt;/strong&gt; developed by &lt;strong&gt;Google&lt;/strong&gt; and designed to be flexible and general-purpose, with good capabilities for understanding technical questions and working with structured representations like graphs.</string>
+    <string name="falcon_rw1b_hint">&lt;strong&gt;&lt;u&gt;Falcon-RW-1B&lt;/u&gt;&lt;/strong&gt; is a model with &lt;strong&gt;1 billion parameters&lt;/strong&gt; developed by &lt;strong&gt;TII (Technology Innovation Institute)&lt;/strong&gt;, a research institute based in the United Arab Emirates. It is designed to perform natural language processing tasks such as text generation, sentence completion, and machine translation. It is efficient and lightweight, suitable for devices with limited resources, and based on refined data from the web.</string>
+    <string name="stable_lm3b_hint">&lt;strong&gt;&lt;u&gt;StableLM-3B&lt;/u&gt;&lt;/strong&gt; is a model with &lt;strong&gt;3 billion parameters&lt;/strong&gt; developed by &lt;strong&gt;Stability AI&lt;/strong&gt;, the same company behind &lt;strong&gt;Stable Diffusion&lt;/strong&gt;. The model is designed to process and generate natural language, similar to models like GPT or Falcon, and stands out for its openness and accessibility.</string>
+    <string name="phi2_hint">&lt;strong&gt;&lt;u&gt;Phi-2&lt;/u&gt;&lt;/strong&gt; is a model with &lt;strong&gt;2.7 billion parameters&lt;/strong&gt; developed by &lt;strong&gt;Microsoft Research&lt;/strong&gt;, intended to improve the understanding and behavior of language agents in complex and realistic environments, with a particular focus on problem-solving skills and learning from experiences.</string>
+
+    <string name="download">Download</string>
+
+    <string name="something_went_wrong">Something went wrong</string>
+
+    <string name="model_used">A prior computation by the %s model is currently underway</string>
+    <string name="another_model">The %s model is given priority as it is preloaded</string>
+</resources>
