@@ -1,6 +1,7 @@
 package com.example.ringo_star;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +36,8 @@ import java.util.Calendar;
 import java.util.List;
 
 public class UserInfoActivity extends AppCompatActivity {
+    User userStart;
+
     private final String[] requiredPermissions = {
             android.Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -126,6 +129,56 @@ public class UserInfoActivity extends AppCompatActivity {
 
         Button btnOk = findViewById(R.id.btnOk);
 
+        new Thread(() -> {
+            DatabaseClient databaseClient = DatabaseClient.getInstance(getApplicationContext());
+            userStart = databaseClient.getDatabase().userDAO().getUser();
+
+            if(userStart != null) {
+                Gender gender = userStart.getGender();
+                LocalDate birthday = userStart.getBirthday();
+                BloodGroup bloodGroup = userStart.getBloodGroup();
+                boolean isSmoke = userStart.isSmoke();
+
+                txtFirstname.setText(userStart.getFirstname());
+                txtLastname.setText(userStart.getLastname());
+
+                if(gender == Gender.MALE)
+                    radioGroupGender.check(R.id.radioButtonMale);
+                else
+                    radioGroupGender.check(R.id.radioButtonFemale);
+
+                int dayBirthday = birthday.getDayOfMonth();
+                int monthBirthday = birthday.getMonthValue();
+                int yearBirthday = birthday.getYear();
+
+                dayPicker.setValue(dayBirthday);
+                monthPicker.setValue(monthBirthday);
+                yearPicker.setValue(yearBirthday);
+
+                rulerPickerHeight.selectValue(userStart.getHeight());
+                rulerPickerWeight.selectValue(userStart.getWeight());
+
+                if(bloodGroup == BloodGroup.A_positive)
+                    bloodGroupSpinner.setSelection(0);
+                else if(bloodGroup == BloodGroup.A_negative)
+                    bloodGroupSpinner.setSelection(1);
+                else if(bloodGroup == BloodGroup.B_positive)
+                    bloodGroupSpinner.setSelection(2);
+                else if(bloodGroup == BloodGroup.B_negative)
+                    bloodGroupSpinner.setSelection(3);
+                else if(bloodGroup == BloodGroup.AB_positive)
+                    bloodGroupSpinner.setSelection(4);
+                else if(bloodGroup == BloodGroup.AB_negative)
+                    bloodGroupSpinner.setSelection(5);
+                else if(bloodGroup == BloodGroup.zero_positive)
+                    bloodGroupSpinner.setSelection(6);
+                else if(bloodGroup == BloodGroup.zero_negative)
+                    bloodGroupSpinner.setSelection(7);
+
+                smoke.setChecked(isSmoke);
+            }
+        }).start();
+
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,36 +202,36 @@ public class UserInfoActivity extends AppCompatActivity {
 
                 BloodGroup bloodGroup = null;
 
-                switch (bloodGroupString) {
+                switch(bloodGroupString) {
                     case "A+":
                         bloodGroup = BloodGroup.A_positive;
-                        break;
-
-                    case "B+":
-                        bloodGroup = BloodGroup.B_positive;
-                        break;
-
-                    case "AB+":
-                        bloodGroup = BloodGroup.AB_positive;
-                        break;
-
-                    case "O+":
-                        bloodGroup = BloodGroup.zero_positive;
                         break;
 
                     case "A-":
                         bloodGroup = BloodGroup.A_negative;
                         break;
 
+                    case "B+":
+                        bloodGroup = BloodGroup.B_positive;
+                        break;
+
                     case "B-":
                         bloodGroup = BloodGroup.B_negative;
+                        break;
+
+                    case "AB+":
+                        bloodGroup = BloodGroup.AB_positive;
                         break;
 
                     case "AB-":
                         bloodGroup = BloodGroup.AB_negative;
                         break;
 
-                    case "O-":
+                    case "0+":
+                        bloodGroup = BloodGroup.zero_positive;
+                        break;
+
+                    case "0-":
                         bloodGroup = BloodGroup.zero_negative;
                         break;
                 }
@@ -207,10 +260,19 @@ public class UserInfoActivity extends AppCompatActivity {
                         user.setBloodGroup(bloodGroup);
                         user.setSmoke(smoker);
 
-                        DatabaseClient databaseClient = DatabaseClient.getInstance(getApplicationContext());
-
                         new Thread(() -> {
-                            databaseClient.getDatabase().userDAO().insert(user);
+                            DatabaseClient databaseClient = DatabaseClient.getInstance(getApplicationContext());
+
+                            if(userStart == null)
+                                databaseClient.getDatabase().userDAO().insert(user);
+                            else {
+                                user.setId(userStart.getId());
+                                databaseClient.getDatabase().userDAO().update(user);
+                            }
+
+                            startActivity(new Intent(UserInfoActivity.this, HomeActivity.class));
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                            finish();
                         }).start();
                     } catch(Exception ignored) {}
                 }

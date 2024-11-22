@@ -43,4 +43,6 @@ dependencies {
     annotationProcessor libs.room.compiler
 
     implementation files("libs/ruler-picker-1.1.aar")
+
+    implementation libs.bubbletabbar
 }

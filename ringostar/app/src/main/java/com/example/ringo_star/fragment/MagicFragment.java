@@ -1,4 +1,4 @@
-package com.example.ringo_star;
+package com.example.ringo_star.fragment;
 
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
@@ -7,12 +7,19 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Html;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
+import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,21 +29,14 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import com.example.ringo_star.R;
+import com.example.ringo_star.llm.InferenceModel;
 
 import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.example.ringo_star.llm.InferenceModel;
-
-public class MagicActivity extends AppCompatActivity {
+public class MagicFragment extends Fragment {
     private long downloadId;
     private DownloadManager downloadManager;
     private Handler handler;
@@ -63,38 +63,38 @@ public class MagicActivity extends AppCompatActivity {
     private static final long MAX_WAIT_TIME_MS = 5000;
     private long startTime;
 
+    public MagicFragment() {}
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+    }
 
-        setContentView(R.layout.activity_magic);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_magic, container, false);
+    }
 
-        Window window = getWindow();
-        window.setStatusBarColor(ContextCompat.getColor(this, R.color.black));
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.activityMagicLayout), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         handler = new Handler();
 
-        radioGroup = findViewById(R.id.radioGroup);
+        radioGroup = view.findViewById(R.id.radioGroup);
 
-        radioButtonGemma = findViewById(R.id.radioButtonGemma);
-        radioButtonFalcon = findViewById(R.id.radioButtonFalcon);
-        radioButtonStable = findViewById(R.id.radioButtonStable);
-        radioButtonPhi = findViewById(R.id.radioButtonPhi);
+        radioButtonGemma = view.findViewById(R.id.radioButtonGemma);
+        radioButtonFalcon = view.findViewById(R.id.radioButtonFalcon);
+        radioButtonStable = view.findViewById(R.id.radioButtonStable);
+        radioButtonPhi = view.findViewById(R.id.radioButtonPhi);
 
-        txtModelDescription = findViewById(R.id.txtModelDescription);
+        txtModelDescription = view.findViewById(R.id.txtModelDescription);
         txtModelDescription.setText(Html.fromHtml(txtModelDescription.getText().toString(), Html.FROM_HTML_MODE_LEGACY));
 
         manageModelDownloadable();
 
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            RadioButton selectedRadioButton = findViewById(checkedId);
+            RadioButton selectedRadioButton = view.findViewById(checkedId);
 
             if(selectedRadioButton.getId() == R.id.radioButtonGemma) {
                 txtModelDescription.setText(Html.fromHtml(getString(R.string.gemma2b_hint), Html.FROM_HTML_MODE_LEGACY));
@@ -113,11 +113,11 @@ public class MagicActivity extends AppCompatActivity {
             manageModelDownloadable();
         });
 
-        btnDownloadModel = findViewById(R.id.btnDownloadModel);
-        constraintLayoutProgressBar = findViewById(R.id.constraintLayoutProgressBar);
-        progressBarDownload = findViewById(R.id.progressBarDownload);
-        txtPercentage = findViewById(R.id.txtPercentage);
-        imgMagic = findViewById(R.id.imgMagic);
+        btnDownloadModel = view.findViewById(R.id.btnDownloadModel);
+        constraintLayoutProgressBar = view.findViewById(R.id.constraintLayoutProgressBar);
+        progressBarDownload = view.findViewById(R.id.progressBarDownload);
+        txtPercentage = view.findViewById(R.id.txtPercentage);
+        imgMagic = view.findViewById(R.id.imgMagic);
 
         if(modelExists("gemma2b")) {
             btnDownloadModel.setText(getString(R.string.delete));
@@ -176,19 +176,19 @@ public class MagicActivity extends AppCompatActivity {
 
             executor.execute(() -> {
                 try {
-                    InferenceModel im = InferenceModel.getInstance(MagicActivity.this, name);
+                    InferenceModel im = InferenceModel.getInstance(requireContext(), name);
 
                     String modelName = im.getModelName();
 
                     if(!im.getModelPath().contains(name))
-                        runOnUiThread(() -> Toast.makeText(MagicActivity.this, getString(R.string.another_model, modelName), Toast.LENGTH_SHORT).show());
+                        requireActivity().runOnUiThread(() -> Toast.makeText(requireContext(), getString(R.string.another_model, modelName), Toast.LENGTH_SHORT).show());
 
                     String response = "";
 
                     try {
                         response = im.generateResponse("Hello, how are you?");
                     } catch(IllegalStateException ignored) {
-                        runOnUiThread(() -> Toast.makeText(MagicActivity.this, getString(R.string.model_used, modelName), Toast.LENGTH_SHORT).show());
+                        requireActivity().runOnUiThread(() -> Toast.makeText(requireContext(), getString(R.string.model_used, modelName), Toast.LENGTH_SHORT).show());
                     }
 
                     String finalResponse = response;
@@ -198,9 +198,9 @@ public class MagicActivity extends AppCompatActivity {
                             System.out.println("**********************" + finalResponse);
                     });
                 } catch(IllegalArgumentException ignored) {
-                    handler.post(() -> runOnUiThread(() -> {
-                        Toast.makeText(MagicActivity.this, R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
-                        finish();
+                    handler.post(() -> requireActivity().runOnUiThread(() -> {
+                        Toast.makeText(requireContext(), R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
+                        requireActivity().finish();
                     }));
                 }
             });
@@ -225,7 +225,7 @@ public class MagicActivity extends AppCompatActivity {
     }
 
     public void downloadFile(String fileURL, String filename) {
-        downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+        downloadManager = (DownloadManager) requireContext().getSystemService(Context.DOWNLOAD_SERVICE);
 
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(fileURL));
 
@@ -302,8 +302,8 @@ public class MagicActivity extends AppCompatActivity {
         File model = new File(dir, filename + ".bin");
 
         if(!model.delete()) {
-            Toast.makeText(MagicActivity.this, R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
-            finish();
+            Toast.makeText(requireContext(), R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
+            requireActivity().finish();
         }
     }
 
@@ -333,7 +333,7 @@ public class MagicActivity extends AppCompatActivity {
         btnDownloadModel.setText(getString(R.string.download));
         imgMagic.setVisibility(View.GONE);
         handleRadioGroup(true);
-        Toast.makeText(MagicActivity.this, getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireContext(), getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
         handler.removeCallbacks(runnable);
     }
 

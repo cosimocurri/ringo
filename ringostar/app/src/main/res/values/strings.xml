@@ -1,8 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ringo-star</string>
 
-    <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>
-    <string name="delete">DELETE</string>
+    <string name="cancel" tools:ignore="ButtonCase">Cancel</string>
+    <string name="delete">Delete</string>
 
     <string name="content_description_purple_logo">Purple Logo</string>
     <string name="content_description_white_logo">White Logo</string>
@@ -48,4 +48,15 @@
     </string-array>
 
     <string name="toast_all_fields_requires">All fields required</string>
+    <string name="home">Home</string>
+    <string name="magic">Magic</string>
+    <string name="profile">Profile</string>
+    <string name="settings">Settings</string>
+    <string name="gender">Gender</string>
+    <string name="birthday">Birthday</string>
+    <string name="blood_group">Blood Group</string>
+    <string name="scriptField">...</string>
+    <string name="update_profile">Update profile</string>
+    <string name="close_app">Close app</string>
+    <string name="delete_all_the_data">Delete all the data</string>
 </resources>

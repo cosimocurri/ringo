@@ -64,7 +64,6 @@
                 android:inputType="number"
                 android:maxLength="1"
                 android:textAlignment="center"
-                android:textColor="#808080"
                 app:layout_constraintEnd_toStartOf="@+id/txtNumber3"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="LabelFor,SpeakableTextPresentCheck"
