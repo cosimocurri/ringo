@@ -95,7 +95,7 @@
                 android:min="0"
                 android:progress="0"
                 android:progressBackgroundTint="@color/jumbo"
-                android:progressTint="?android:attr/colorPrimaryDark"
+                android:progressTint="?android:attr/colorPrimary"
                 android:scaleY="3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -109,7 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="0%"
-            android:textColor="?android:attr/colorPrimaryDark"
+            android:textColor="?android:attr/colorPrimary"
             android:visibility="gone"
             tools:ignore="HardcodedText" />
 
@@ -127,6 +127,7 @@
         android:id="@+id/imgMagic"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:contentDescription="@string/magic_button"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

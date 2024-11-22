@@ -34,7 +34,7 @@
         android:id="@+id/whiteLogo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:contentDescription="@string/content_description_purple_logo"
+        android:contentDescription="@string/content_description_white_logo"
         android:src="@drawable/logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

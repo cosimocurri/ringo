@@ -128,7 +128,7 @@ public class MagicActivity extends AppCompatActivity {
             String name = getSelectedRadioButtonName();
 
             if(btnDownloadModel.getText().toString().equals(getString(R.string.download))) {
-                String fileURL = "http://172.20.10.2:3000/api/download/" + name;
+                String fileURL = "http://192.168.1.10:3000/api/download/" + name;
                 String filename = name + ".bin";
 
                 downloadFile(fileURL, filename);
@@ -198,12 +198,10 @@ public class MagicActivity extends AppCompatActivity {
                             System.out.println("**********************" + finalResponse);
                     });
                 } catch(IllegalArgumentException ignored) {
-                    handler.post(() -> {
-                        runOnUiThread(() -> {
-                            Toast.makeText(MagicActivity.this, R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
-                            finish();
-                        });
-                    });
+                    handler.post(() -> runOnUiThread(() -> {
+                        Toast.makeText(MagicActivity.this, R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
+                        finish();
+                    }));
                 }
             });
         });
@@ -231,7 +229,7 @@ public class MagicActivity extends AppCompatActivity {
 
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(fileURL));
 
-        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_ONLY_COMPLETION);
         request.setAllowedOverRoaming(false);
 
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, filename);
@@ -334,6 +332,7 @@ public class MagicActivity extends AppCompatActivity {
         txtPercentage.setVisibility(View.GONE);
         btnDownloadModel.setText(getString(R.string.download));
         imgMagic.setVisibility(View.GONE);
+        handleRadioGroup(true);
         Toast.makeText(MagicActivity.this, getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
         handler.removeCallbacks(runnable);
     }

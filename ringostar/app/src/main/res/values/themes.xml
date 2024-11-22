@@ -1,8 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Base.Theme.Ringostar" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/purple</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="DefaultNumberPickerTheme" parent="Base.Theme.Ringostar">
+        <item name="colorControlNormal">@color/purple</item>
     </style>
 
     <style name="Theme.Ringostar" parent="Base.Theme.Ringostar" />

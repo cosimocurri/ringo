@@ -3,6 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="purple">#7F007F</color>
+
     <color name="iron">#CCCCCC</color>
     <color name="jumbo">#888888</color>
 </resources>

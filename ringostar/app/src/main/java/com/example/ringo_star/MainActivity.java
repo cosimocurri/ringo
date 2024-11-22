@@ -12,6 +12,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.ringo_star.data.DatabaseClient;
+import com.example.ringo_star.data.entity.User;
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +32,16 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(new Intent(MainActivity.this, PinActivity.class));
+        new Thread(() -> {
+            DatabaseClient databaseClient = DatabaseClient.getInstance(getApplicationContext());
+            User user = databaseClient.getDatabase().userDAO().getUser();
+
+            runOnUiThread(() -> new Handler().postDelayed(() -> {
+                Class<?> nextActivity = (user == null) ? UserInfoActivity.class : PinActivity.class;
+                startActivity(new Intent(MainActivity.this, nextActivity));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();
-            }
-        }, 3000);
+            }, 3000));
+        }).start();
     }
 }

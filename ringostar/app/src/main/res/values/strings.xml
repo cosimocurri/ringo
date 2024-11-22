@@ -1,7 +1,7 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ringo-star</string>
 
-    <string name="cancel">CANCEL</string>
+    <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>
     <string name="delete">DELETE</string>
 
     <string name="content_description_purple_logo">Purple Logo</string>
@@ -25,4 +25,27 @@
 
     <string name="model_used">A prior computation by the %s model is currently underway</string>
     <string name="another_model">The %s model is given priority as it is preloaded</string>
+    <string name="magic_button">Magic Button</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="pin">PIN</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="smoke">Smoke</string>
+    <string name="ok">OK</string>
+
+    <string-array name="bloodGroupSpinner">
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+        <item>0+</item>
+        <item>0-</item>
+    </string-array>
+
+    <string name="toast_all_fields_requires">All fields required</string>
 </resources>
