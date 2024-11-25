@@ -53,7 +53,7 @@ public class SettingsFragment extends Fragment {
         btnCloseApp.setBackgroundResource(R.drawable.button_settings);
         btnCloseApp.setBackgroundTintList(null);
 
-        btnDeleteAll.setBackgroundResource(R.drawable.button_settings);
+        btnDeleteAll.setBackgroundResource(R.drawable.button_settings_alert);
         btnDeleteAll.setBackgroundTintList(null);
 
         btnUpdateProfile.setOnClickListener(new View.OnClickListener() {

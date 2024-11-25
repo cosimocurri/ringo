@@ -39,6 +39,7 @@
             android:layout_margin="20dp"
             android:layout_marginTop="20dp"
             android:text="@string/delete_all_the_data"
+            android:fontFamily="@font/montserrat_extrabold"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

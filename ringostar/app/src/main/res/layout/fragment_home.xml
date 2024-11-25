@@ -3,11 +3,135 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.HomeFragment">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Home" />
+        tools:ignore="SpeakableTextPresentCheck">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="@string/daily"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <com.example.ringo_star.components.QuestionnaireBoxComponent
+                android:id="@+id/questionnaireGeneral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:iconSrc="@drawable/today"
+                app:titleText="How are you today?"
+                app:descriptionText="General state of health and basic parameters of diabetes." >
+
+            </com.example.ringo_star.components.QuestionnaireBoxComponent>
+
+            <com.example.ringo_star.components.QuestionnaireBoxComponent
+                android:id="@+id/questionnaireTreatment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                app:descriptionText="Adherence to the therapy."
+                app:iconSrc="@drawable/pills"
+                app:titleText="Treatment management">
+
+            </com.example.ringo_star.components.QuestionnaireBoxComponent>
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="@string/monthly"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <com.example.ringo_star.components.QuestionnaireBoxComponent
+                android:id="@+id/questionnaireLifestyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                app:descriptionText="Lifestyle affects diabetes."
+                app:iconSrc="@drawable/leaf"
+                app:titleText="Lifestyle">
+
+            </com.example.ringo_star.components.QuestionnaireBoxComponent>
+
+            <com.example.ringo_star.components.QuestionnaireBoxComponent
+                android:id="@+id/questionnaireSymptoms"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                app:descriptionText="Symptoms or signs of diabetic complications."
+                app:iconSrc="@drawable/thermometer"
+                app:titleText="Symptoms and complications">
+
+            </com.example.ringo_star.components.QuestionnaireBoxComponent>
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="@string/quarterly"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <com.example.ringo_star.components.QuestionnaireBoxComponent
+                android:id="@+id/questionnaireHbA1c"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                app:descriptionText="Long-term glycemic control."
+                app:iconSrc="@drawable/dna"
+                app:titleText="HbA1c">
+
+            </com.example.ringo_star.components.QuestionnaireBoxComponent>
+
+            <com.example.ringo_star.components.QuestionnaireBoxComponent
+                android:id="@+id/questionnaireCardiovascularRisk"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                app:descriptionText="Cardiovascular parameters associated with diabetes."
+                app:iconSrc="@drawable/heart"
+                app:titleText="Cardiovascular risk">
+
+            </com.example.ringo_star.components.QuestionnaireBoxComponent>
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="@string/semi_annual"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <com.example.ringo_star.components.QuestionnaireBoxComponent
+                android:id="@+id/questionnaireFINDRISC"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                app:iconSrc="@drawable/findrisc"
+                app:titleText="FINDRISC"
+                app:descriptionText="Finnish Diabetes Risk Score.">
+
+            </com.example.ringo_star.components.QuestionnaireBoxComponent>
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>

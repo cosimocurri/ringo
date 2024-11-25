@@ -59,4 +59,20 @@
     <string name="update_profile">Update profile</string>
     <string name="close_app">Close app</string>
     <string name="delete_all_the_data">Delete all the data</string>
+    <string name="questionnaires">Questionnaires</string>
+    <string name="daily">Daily</string>
+    <string name="semi_annual">Semi-annual</string>
+    <string name="quarterly">Quarterly</string>
+    <string name="monthly">Monthly</string>
+    <string name="how_are_you_today">How are you today?</string>
+    <string name="how_do_you_feel">How do you feel?</string>
+    <string name="do_you_notice_a_lack_of_energy">Do you notice a lack of energy?</string>
+    <string name="do_you_notice_mental_confusion">Do you notice mental confusion?</string>
+    <string name="how_stressed_do_you_feel">How stressed do you feel?</string>
+    <string name="blood_sugar_mg_dl">Blood sugar (mg/dL)</string>
+    <string name="systolic_pressure_mmhg">Systolic pressure (mmHg)</string>
+    <string name="diastolic_pressure_mmhg">Diastolic pressure (mmHg)</string>
+    <string name="physical_activity_minutes">Physical activity (minutes)</string>
+    <string name="did_you_eat_your_meals_regularly">Did you eat your meals regularly?</string>
+    <string name="have_you_consumed_sweets_or_sugary_drinks">Have you consumed sweets or sugary drinks?</string>
 </resources>
