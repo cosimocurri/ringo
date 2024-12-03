@@ -75,4 +75,11 @@
     <string name="physical_activity_minutes">Physical activity (minutes)</string>
     <string name="did_you_eat_your_meals_regularly">Did you eat your meals regularly?</string>
     <string name="have_you_consumed_sweets_or_sugary_drinks">Have you consumed sweets or sugary drinks?</string>
+    <string name="send">Send</string>
+    <string name="treatment_management">Treatment management</string>
+    <string name="lifestyle">Lifestyle</string>
+    <string name="symptoms_and_complications">Symptoms and complications</string>
+    <string name="hba1c">HbA1c</string>
+    <string name="cardiovascular_risk">Cardiovascular risk</string>
+    <string name="findrisc">FINDRISC</string>
 </resources>

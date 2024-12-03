@@ -15,13 +15,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.ringo_star.R;
 
-public class HowAreYouQuestionnaire extends AppCompatActivity {
+public class CardiovascularRiskQuestionnaire extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
 
-        setContentView(R.layout.activity_how_are_you_questionnaire);
+        setContentView(R.layout.activity_cardiovascular_risk_questionnaire);
 
         Window window = getWindow();
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.black));
