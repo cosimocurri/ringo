@@ -48,6 +48,44 @@
 
             </LinearLayout>
 
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchAllMedicine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/have_you_taken_all_the_prescribed_medications_in_the_past_month" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchDifficultSchedule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/have_you_had_difficulty_following_the_schedule_or_dosages" />
+
+            <EditText
+                android:id="@+id/txtSideEffects"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text"
+                android:layout_marginTop="20dp"
+                android:hint="@string/side_effects"
+                android:inputType="text" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchChangeInsulin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/have_you_recently_adjusted_the_dose_of_insulin_or_other_medications" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchMonitorGlucose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/are_you_using_a_continuous_glucose_monitoring_device" />
+
             <Button
                 android:id="@+id/btnSend"
                 android:layout_width="match_parent"

@@ -12,28 +12,30 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/imgBack"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    app:tint="?android:attr/colorPrimary"
                     app:srcCompat="@drawable/arrow_back"
+                    app:tint="?android:attr/colorPrimary"
                     tools:ignore="ContentDescription" />
 
                 <TextView
@@ -47,6 +49,39 @@
                     android:textSize="20sp" />
 
             </LinearLayout>
+
+            <EditText
+                android:id="@+id/txtBloodSugar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/edit_text"
+                android:layout_marginTop="20dp"
+                android:hint="@string/cholesterol_mg_dl"
+                android:ems="10"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchChestPain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/have_you_experienced_chest_pain_or_shortness_of_breath_during_exercise" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchSmoke"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/do_you_currently_smoke" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchDietLipids"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/are_you_following_a_diet_to_reduce_lipids" />
+
 
             <Button
                 android:id="@+id/btnSend"

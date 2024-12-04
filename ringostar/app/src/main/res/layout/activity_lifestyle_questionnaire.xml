@@ -48,6 +48,67 @@
 
             </LinearLayout>
 
+            <EditText
+                android:id="@+id/txtNumberMeals"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/edit_text"
+                android:layout_marginTop="20dp"
+                android:hint="@string/how_many_meals_do_you_eat_per_day"
+                android:ems="10"
+                android:importantForAutofill="no"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/txtSugaryFoods"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/edit_text"
+                android:layout_marginTop="20dp"
+                android:hint="@string/how_often_do_you_eat_sugary_foods"
+                android:ems="10"
+                android:importantForAutofill="no"
+                android:inputType="number" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchDietChanged"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/have_you_made_any_changes_to_your_diet_since_the_last_questionnaire" />
+
+            <EditText
+                android:id="@+id/txtNumberExercises"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/edit_text"
+                android:layout_marginTop="20dp"
+                android:hint="@string/how_often_do_you_workout"
+                android:ems="10"
+                android:importantForAutofill="no"
+                android:inputType="number" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchStopActivityProgram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/have_you_started_or_stopped_a_physical_activity_program" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchSleep"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/do_you_sleep_at_least_7_hours_per_night" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchStress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/have_you_experienced_significant_periods_of_stress_recently" />
+
             <Button
                 android:id="@+id/btnSend"
                 android:layout_width="match_parent"

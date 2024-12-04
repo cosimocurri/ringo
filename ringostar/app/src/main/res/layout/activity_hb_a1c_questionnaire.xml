@@ -48,6 +48,50 @@
 
             </LinearLayout>
 
+            <EditText
+                android:id="@+id/txtHbA1c"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edit_text"
+                android:ems="10"
+                android:hint="@string/average_fasting_blood_glucose"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal" />
+
+            <EditText
+                android:id="@+id/txthypoglycemia"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edit_text"
+                android:ems="10"
+                android:hint="@string/how_many_episodes_of_hypoglycemia_have_you_had_in_the_past_month"
+                android:importantForAutofill="no"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/txthyperglycemia"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edit_text"
+                android:ems="10"
+                android:hint="@string/how_many_episodes_of_hyperglycemia_have_you_experienced"
+                android:importantForAutofill="no"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/txthMeasure"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edit_text"
+                android:ems="10"
+                android:hint="@string/hba1c_last_value_measured_mmol_mol"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal" />
+
             <Button
                 android:id="@+id/btnSend"
                 android:layout_width="match_parent"

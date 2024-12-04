@@ -48,6 +48,96 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/what_is_your_waist_circumference"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <Spinner
+                android:id="@+id/waistCircumferenceSpinner"
+                android:layout_width="match_parent"
+                android:background="@drawable/spinner"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/do_you_do_physical_activity_for_at_least_30_minutes_a_day_at_work_and_or_during_free_time_also_considering_your_normal_daily_activity"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <Spinner
+                android:id="@+id/activity30spinner"
+                android:layout_width="match_parent"
+                android:background="@drawable/spinner"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/how_often_do_you_eat_vegetables_and_fruit"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <Spinner
+                android:id="@+id/fruitVegetableSpinner"
+                android:layout_width="match_parent"
+                android:background="@drawable/spinner"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/do_you_regularly_take_high_blood_pressure_medications"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <Spinner
+                android:id="@+id/bloodPressureMedicationSpinner"
+                android:layout_width="match_parent"
+                android:background="@drawable/spinner"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/have_you_ever_had_high_blood_sugar_levels_for_example_during_a_medical_visit_during_an_illness"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <Spinner
+                android:id="@+id/highBloodSugarLevelSpinner"
+                android:layout_width="match_parent"
+                android:background="@drawable/spinner"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/do_you_have_any_family_members_with_type_1_or_type_2_diabetes"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <Spinner
+                android:id="@+id/familyMembersDiabeteSpinner"
+                android:layout_width="match_parent"
+                android:background="@drawable/spinner"
+                android:layout_height="50dp" />
+
             <Button
                 android:id="@+id/btnSend"
                 android:layout_width="match_parent"

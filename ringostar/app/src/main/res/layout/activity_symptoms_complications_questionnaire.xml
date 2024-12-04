@@ -48,6 +48,42 @@
 
             </LinearLayout>
 
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchChangeVision"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/have_you_noticed_any_changes_in_your_vision" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchInfections"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/have_you_had_recurrent_infections_in_the_past_month" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchLossSensation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/have_you_experienced_pain_tingling_or_loss_of_sensation_in_your_feet" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchWoundsFeet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/have_you_observed_wounds_or_ulcers_on_your_feet_that_are_not_healing" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchJoints"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/have_you_noticed_swelling_or_pain_in_your_joints" />
+
+
             <Button
                 android:id="@+id/btnSend"
                 android:layout_width="match_parent"

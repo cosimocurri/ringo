@@ -47,6 +47,44 @@
         <item>0-</item>
     </string-array>
 
+    <string-array name="waistCircumferenceArrayMale">
+        <item>Under 94 cm</item>
+        <item>94–102 cm</item>
+        <item>Over 102 cm</item>
+    </string-array>
+
+    <string-array name="waistCircumferenceArrayFemale">
+        <item>Under 80 cm</item>
+        <item>80–88 cm</item>
+        <item>Over 88 cm</item>
+    </string-array>
+
+    <string-array name="activity30Array">
+        <item>No</item>
+        <item>Yes</item>
+    </string-array>
+
+    <string-array name="fruitVegetableArray">
+        <item>Every day</item>
+        <item>Not every day</item>
+    </string-array>
+
+    <string-array name="bloodPressureMedicationArray">
+        <item>No</item>
+        <item>Yes</item>
+    </string-array>
+
+    <string-array name="highBloodSugarLevelArray">
+        <item>No</item>
+        <item>Yes</item>
+    </string-array>
+
+    <string-array name="familyMembersDiabeteArray">
+        <item>No</item>
+        <item>Yes, but not parents, siblings or children</item>
+        <item>Yes, including parents, siblings or children</item>
+    </string-array>
+
     <string name="toast_all_fields_requires">All fields required</string>
     <string name="home">Home</string>
     <string name="magic">Magic</string>
@@ -82,4 +120,35 @@
     <string name="hba1c">HbA1c</string>
     <string name="cardiovascular_risk">Cardiovascular risk</string>
     <string name="findrisc">FINDRISC</string>
+    <string name="have_you_taken_all_the_prescribed_medications_in_the_past_month">Have you taken all the prescribed medications in the past month?</string>
+    <string name="have_you_had_difficulty_following_the_schedule_or_dosages">Have you had difficulty following the schedule or dosages?</string>
+    <string name="have_you_recently_adjusted_the_dose_of_insulin_or_other_medications">Have you recently adjusted the dose of insulin or other medications?</string>
+    <string name="are_you_using_a_continuous_glucose_monitoring_device">Are you using a continuous glucose monitoring device?</string>
+    <string name="side_effects">Side effects</string>
+    <string name="have_you_made_any_changes_to_your_diet_since_the_last_questionnaire">Have you made any changes to your diet since the last questionnaire?</string>
+    <string name="have_you_started_or_stopped_a_physical_activity_program">Have you started or stopped a physical activity program?</string>
+    <string name="do_you_sleep_at_least_7_hours_per_night">Do you sleep at least 7 hours per night?</string>
+    <string name="have_you_experienced_significant_periods_of_stress_recently">Have you experienced significant periods of stress recently?</string>
+    <string name="how_many_meals_do_you_eat_per_day">How many meals do you eat per day?</string>
+    <string name="how_often_do_you_eat_sugary_foods">How often do you eat sugary foods?</string>
+    <string name="how_often_do_you_workout">How often do you work out?</string>
+    <string name="have_you_noticed_any_changes_in_your_vision">Have you noticed any changes in your vision?</string>
+    <string name="have_you_experienced_pain_tingling_or_loss_of_sensation_in_your_feet">Have you experienced pain, tingling, or loss of sensation in your feet?</string>
+    <string name="have_you_had_recurrent_infections_in_the_past_month">Have you had recurrent infections in the past month?</string>
+    <string name="have_you_observed_wounds_or_ulcers_on_your_feet_that_are_not_healing">Have you observed wounds or ulcers on your feet that are not healing?</string>
+    <string name="have_you_noticed_swelling_or_pain_in_your_joints">Have you noticed swelling or pain in your joints?</string>
+    <string name="cholesterol_mg_dl">Cholesterol (mg/dL)</string>
+    <string name="have_you_experienced_chest_pain_or_shortness_of_breath_during_exercise">Have you experienced chest pain or shortness of breath during exercise?</string>
+    <string name="do_you_currently_smoke">Do you currently smoke?</string>
+    <string name="are_you_following_a_diet_to_reduce_lipids">Are you following a diet to reduce lipids?</string>
+    <string name="average_fasting_blood_glucose">Avg fasting blood glucose (mmol/L)</string>
+    <string name="how_many_episodes_of_hypoglycemia_have_you_had_in_the_past_month">Episodes of hypoglycemia last month?</string>
+    <string name="how_many_episodes_of_hyperglycemia_have_you_experienced">Episodes of hyperglycemia?</string>
+    <string name="hba1c_last_value_measured_mmol_mol">HbA1c (mmol/mol)</string>
+    <string name="what_is_your_waist_circumference">What is your waist circumference?</string>
+    <string name="do_you_do_physical_activity_for_at_least_30_minutes_a_day_at_work_and_or_during_free_time_also_considering_your_normal_daily_activity">Do you get 30+ mins of daily physical activity (work/free time/daily routine)?</string>
+    <string name="how_often_do_you_eat_vegetables_and_fruit">How often do you eat vegetables and fruit?</string>
+    <string name="do_you_regularly_take_high_blood_pressure_medications">Do you regularly take high blood pressure medications?</string>
+    <string name="have_you_ever_had_high_blood_sugar_levels_for_example_during_a_medical_visit_during_an_illness">Have you ever had high blood sugar levels?</string>
+    <string name="do_you_have_any_family_members_with_type_1_or_type_2_diabetes">Do you have any family members with type 1 or type 2 diabetes?</string>
 </resources>
