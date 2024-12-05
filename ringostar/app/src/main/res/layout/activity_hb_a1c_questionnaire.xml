@@ -49,7 +49,7 @@
             </LinearLayout>
 
             <EditText
-                android:id="@+id/txtHbA1c"
+                android:id="@+id/txtAvgGlucose"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
@@ -60,7 +60,7 @@
                 android:inputType="numberDecimal" />
 
             <EditText
-                android:id="@+id/txthypoglycemia"
+                android:id="@+id/txtHypoglycemia"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
@@ -71,7 +71,7 @@
                 android:inputType="number" />
 
             <EditText
-                android:id="@+id/txthyperglycemia"
+                android:id="@+id/txtHyperglycemia"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
@@ -82,7 +82,7 @@
                 android:inputType="number" />
 
             <EditText
-                android:id="@+id/txthMeasure"
+                android:id="@+id/txtMeasure"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"

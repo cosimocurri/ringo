@@ -51,7 +51,7 @@
             </LinearLayout>
 
             <EditText
-                android:id="@+id/txtBloodSugar"
+                android:id="@+id/txtCholesterol"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/edit_text"
@@ -67,13 +67,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/have_you_experienced_chest_pain_or_shortness_of_breath_during_exercise" />
-
-            <com.google.android.material.materialswitch.MaterialSwitch
-                android:id="@+id/switchSmoke"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/do_you_currently_smoke" />
 
             <com.google.android.material.materialswitch.MaterialSwitch
                 android:id="@+id/switchDietLipids"

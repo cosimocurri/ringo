@@ -82,6 +82,12 @@ public class FINDRISCQuestionnaire extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String waistCircumference = waistCircumferenceSpinner.getSelectedItem().toString();
+                String activity30 = activity30spinner.getSelectedItem().toString();
+                String fruitVegetable = fruitVegetableSpinner.getSelectedItem().toString();
+                String bloodPressureMedication = bloodPressureMedicationSpinner.getSelectedItem().toString();
+                String highBloodSugarLevel = highBloodSugarLevelSpinner.getSelectedItem().toString();
+                String familyMembersDiabete = familyMembersDiabeteSpinner.getSelectedItem().toString();
             }
         });
     }

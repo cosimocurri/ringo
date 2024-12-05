@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.ringo_star.R;
+import com.google.android.material.materialswitch.MaterialSwitch;
 
 public class SymptomsComplicationsQuestionnaire extends AppCompatActivity {
 
@@ -42,11 +43,22 @@ public class SymptomsComplicationsQuestionnaire extends AppCompatActivity {
             }
         });
 
+        MaterialSwitch switchChangeVision = findViewById(R.id.switchChangeVision);
+        MaterialSwitch switchInfections = findViewById(R.id.switchInfections);
+        MaterialSwitch switchLossSensation = findViewById(R.id.switchLossSensation);
+        MaterialSwitch switchWoundsFeet = findViewById(R.id.switchWoundsFeet);
+        MaterialSwitch switchJoints = findViewById(R.id.switchJoints);
+
         Button btnSend = findViewById(R.id.btnSend);
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean changeVision = switchChangeVision.isChecked();
+                boolean infections = switchInfections.isChecked();
+                boolean lossSensation = switchLossSensation.isChecked();
+                boolean woundsFeet = switchWoundsFeet.isChecked();
+                boolean joints = switchJoints.isChecked();
             }
         });
     }

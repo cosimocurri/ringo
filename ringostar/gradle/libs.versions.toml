@@ -8,8 +8,10 @@ appcompat = "1.7.0"
 material = "1.12.0"
 activity = "1.9.3"
 constraintlayout = "2.1.4"
+rdf4jStorage = "4.3.2"
 roomRuntime = "2.6.1"
 tasksGenai = "0.10.18"
+xercesimpl = "2.12.2"
 
 [libraries]
 bubbletabbar = { module = "io.ak1:bubbletabbar", version.ref = "bubbletabbar" }
@@ -20,9 +22,15 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+rdf4j-model = { module = "org.eclipse.rdf4j:rdf4j-model", version.ref = "rdf4jStorage" }
+rdf4j-repository-api = { module = "org.eclipse.rdf4j:rdf4j-repository-api", version.ref = "rdf4jStorage" }
+rdf4j-rio-api = { module = "org.eclipse.rdf4j:rdf4j-rio-api", version.ref = "rdf4jStorage" }
+rdf4j-rio-turtle = { module = "org.eclipse.rdf4j:rdf4j-rio-turtle", version.ref = "rdf4jStorage" }
+rdf4j-storage = { module = "org.eclipse.rdf4j:rdf4j-storage", version.ref = "rdf4jStorage" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 tasks-genai = { module = "com.google.mediapipe:tasks-genai", version.ref = "tasksGenai" }
+xercesimpl = { module = "xerces:xercesImpl", version.ref = "xercesimpl" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

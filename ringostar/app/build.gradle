@@ -26,6 +26,20 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    packaging {
+        resources {
+            excludes += [
+                    'META-INF/INDEX.LIST',
+                    'META-INF/DEPENDENCIES',
+                    'META-INF/LICENSE',
+                    'META-INF/LICENSE.txt',
+                    'META-INF/NOTICE',
+                    'META-INF/NOTICE.txt',
+                    'META-INF/io.netty.versions.properties'
+            ]
+        }
+    }
 }
 
 dependencies {
@@ -45,4 +59,16 @@ dependencies {
     implementation files("libs/ruler-picker-1.1.aar")
 
     implementation libs.bubbletabbar
+
+    implementation libs.rdf4j.model
+    implementation libs.rdf4j.rio.api
+    implementation libs.rdf4j.repository.api
+    implementation libs.rdf4j.rio.turtle
+    implementation libs.xercesimpl
+
+    configurations.implementation {
+        exclude group: 'commons-codec', module: 'commons-codec'
+        exclude group: 'org.apache.httpcomponents', module: 'httpcore-osgi'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient-osgi'
+    }
 }
