@@ -16,9 +16,10 @@ import org.eclipse.rdf4j.model.Literal;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.StringWriter;
 import java.util.Optional;
 
-public class RingoStarRD4F {
+public class RingoStarRDF4J {
     public static String ns = "http://example.org/";
 
     public static String nodeNS = ns + "node";
@@ -37,8 +38,12 @@ public class RingoStarRD4F {
     public static IRI propertyLastWeightRecordIRI = Values.iri(propertyNS, "lastWeightRecord");
     public static IRI propertyValue = Values.iri(propertyNS, "value");
     public static IRI propertyDate = Values.iri(propertyNS, "date");
+    public static IRI propertyName = Values.iri(propertyNS, "name");
+    public static IRI propertyText = Values.iri(propertyNS, "text");
 
     public static IRI relationCarry = Values.iri(relationNS, "carry");
+    public static IRI relationCompile = Values.iri(relationNS, "compile");
+    public static IRI relationHas = Values.iri(relationNS, "has");
 
     public static Optional<String> getLiteralValue(Model model, IRI node, IRI property) {
         return model.filter(node, property, null)
@@ -75,5 +80,12 @@ public class RingoStarRD4F {
         } catch(Exception ignored) {
             return null;
         }
+    }
+
+    public static String stringifyModel(Model model) {
+        StringWriter writer = new StringWriter();
+        Rio.write(model, writer, RDFFormat.TURTLE);
+
+        return writer.toString();
     }
 }

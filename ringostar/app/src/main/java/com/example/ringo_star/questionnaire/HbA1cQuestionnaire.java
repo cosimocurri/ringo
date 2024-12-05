@@ -22,6 +22,15 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.ringo_star.R;
+import com.example.ringo_star.utils.RingoStarRDF4J;
+
+import org.eclipse.rdf4j.model.IRI;
+import org.eclipse.rdf4j.model.Model;
+import org.eclipse.rdf4j.model.util.Values;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 public class HbA1cQuestionnaire extends AppCompatActivity {
     Vibrator vibrator;
@@ -85,6 +94,48 @@ public class HbA1cQuestionnaire extends AppCompatActivity {
                     main.startAnimation(shake);
 
                     Toast.makeText(getApplicationContext(), R.string.toast_all_fields_requires, Toast.LENGTH_SHORT).show();
+                } else {
+                    Model model = RingoStarRDF4J.loadModelFromFile(getApplicationContext(), "kg.ttl");
+
+                    LocalDate today = LocalDate.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    String formattedToday = today.format(formatter);
+
+                    IRI nodeQuestionnaireIRI = Values.iri(RingoStarRDF4J.nodeNS, "questionnaire" + UUID.randomUUID());
+
+                    model.add(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.relationCompile, nodeQuestionnaireIRI);
+                    model.add(nodeQuestionnaireIRI, RingoStarRDF4J.propertyName, Values.literal("HbA1c"));
+                    model.add(nodeQuestionnaireIRI, RingoStarRDF4J.propertyDate, Values.literal(formattedToday));
+
+                    IRI nodeFirstQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
+                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Average fasting blood glucose"));
+                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(avgGlucose));
+
+                    IRI nodeSecondQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
+                    model.add(nodeSecondQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("How many episodes of hypoglycemia did you have last month?"));
+                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(hypoglycemia));
+
+                    IRI nodeThirdQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
+                    model.add(nodeThirdQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("How many episodes of hyperglycemia did you have last month?"));
+                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(hyperglycemia));
+
+                    IRI nodeFourthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
+                    model.add(nodeFourthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("HbA1c"));
+                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(measure));
+
+                    model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeFirstQuestionIRI);
+                    model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeSecondQuestionIRI);
+                    model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeThirdQuestionIRI);
+                    model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeFourthQuestionIRI);
+
+                    new Thread(() -> {
+                        RingoStarRDF4J.saveModelToFile(model, getApplicationContext(), "kg.ttl");
+
+                        runOnUiThread(() -> {
+                            Toast.makeText(getApplicationContext(), "Questionnaire submitted", Toast.LENGTH_SHORT).show();
+                            finish();
+                        });
+                    }).start();
                 }
             }
         });

@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +15,16 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.ringo_star.R;
+import com.example.ringo_star.utils.RingoStarRDF4J;
 import com.google.android.material.materialswitch.MaterialSwitch;
+
+import org.eclipse.rdf4j.model.IRI;
+import org.eclipse.rdf4j.model.Model;
+import org.eclipse.rdf4j.model.util.Values;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 public class SymptomsComplicationsQuestionnaire extends AppCompatActivity {
 
@@ -59,6 +69,53 @@ public class SymptomsComplicationsQuestionnaire extends AppCompatActivity {
                 boolean lossSensation = switchLossSensation.isChecked();
                 boolean woundsFeet = switchWoundsFeet.isChecked();
                 boolean joints = switchJoints.isChecked();
+
+                Model model = RingoStarRDF4J.loadModelFromFile(getApplicationContext(), "kg.ttl");
+
+                LocalDate today = LocalDate.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                String formattedToday = today.format(formatter);
+
+                IRI nodeQuestionnaireIRI = Values.iri(RingoStarRDF4J.nodeNS, "questionnaire" + UUID.randomUUID());
+
+                model.add(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.relationCompile, nodeQuestionnaireIRI);
+                model.add(nodeQuestionnaireIRI, RingoStarRDF4J.propertyName, Values.literal("Symptoms and complications"));
+                model.add(nodeQuestionnaireIRI, RingoStarRDF4J.propertyDate, Values.literal(formattedToday));
+
+                IRI nodeFirstQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
+                model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Have you noticed any changes in your vision?"));
+                model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(changeVision ? "Yes" : "No"));
+
+                IRI nodeSecondQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
+                model.add(nodeSecondQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Have you had recurrent infections in the past month?"));
+                model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(infections ? "Yes" : "No"));
+
+                IRI nodeThirdQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
+                model.add(nodeThirdQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Have you experienced pain, tingling, or loss of sensation in your feet?"));
+                model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(lossSensation ? "Yes" : "No"));
+
+                IRI nodeFourthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
+                model.add(nodeFourthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Have you observed wounds or ulcers on your feet that are not healing?"));
+                model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(woundsFeet ? "Yes" : "No"));
+
+                IRI nodeFifthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
+                model.add(nodeFifthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Have you noticed swelling or pain in your joints?"));
+                model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(joints ? "Yes" : "No"));
+
+                model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeFirstQuestionIRI);
+                model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeSecondQuestionIRI);
+                model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeThirdQuestionIRI);
+                model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeFourthQuestionIRI);
+                model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeFifthQuestionIRI);
+
+                new Thread(() -> {
+                    RingoStarRDF4J.saveModelToFile(model, getApplicationContext(), "kg.ttl");
+
+                    runOnUiThread(() -> {
+                        Toast.makeText(getApplicationContext(), "Questionnaire submitted", Toast.LENGTH_SHORT).show();
+                        finish();
+                    });
+                }).start();
             }
         });
     }

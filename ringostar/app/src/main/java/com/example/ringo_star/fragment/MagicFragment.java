@@ -31,6 +31,9 @@ import android.widget.Toast;
 
 import com.example.ringo_star.R;
 import com.example.ringo_star.llm.InferenceModel;
+import com.example.ringo_star.utils.RingoStarRDF4J;
+
+import org.eclipse.rdf4j.model.Model;
 
 import java.io.File;
 import java.util.concurrent.ExecutorService;
@@ -183,10 +186,13 @@ public class MagicFragment extends Fragment {
                     if(!im.getModelPath().contains(name))
                         requireActivity().runOnUiThread(() -> Toast.makeText(requireContext(), getString(R.string.another_model, modelName), Toast.LENGTH_SHORT).show());
 
+                    Model model = RingoStarRDF4J.loadModelFromFile(requireContext(), "kg.ttl");
+
+                    String prompt = "Read the following knowledge graph and talk about the patient's diabetes while pretending to be a doctor.\n" + RingoStarRDF4J.stringifyModel(model);
                     String response = "";
 
                     try {
-                        response = im.generateResponse("Hello, how are you?");
+                        response = im.generateResponse(prompt);
                     } catch(IllegalStateException ignored) {
                         requireActivity().runOnUiThread(() -> Toast.makeText(requireContext(), getString(R.string.model_used, modelName), Toast.LENGTH_SHORT).show());
                     }

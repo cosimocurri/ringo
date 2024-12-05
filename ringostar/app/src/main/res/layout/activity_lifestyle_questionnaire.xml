@@ -89,13 +89,6 @@
                 android:inputType="number" />
 
             <com.google.android.material.materialswitch.MaterialSwitch
-                android:id="@+id/switchStopActivityProgram"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/have_you_started_or_stopped_a_physical_activity_program" />
-
-            <com.google.android.material.materialswitch.MaterialSwitch
                 android:id="@+id/switchSleep"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -23,7 +23,16 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.ringo_star.R;
+import com.example.ringo_star.utils.RingoStarRDF4J;
 import com.google.android.material.materialswitch.MaterialSwitch;
+
+import org.eclipse.rdf4j.model.IRI;
+import org.eclipse.rdf4j.model.Model;
+import org.eclipse.rdf4j.model.util.Values;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 public class HowAreYouQuestionnaire extends AppCompatActivity {
     Vibrator vibrator;
@@ -106,6 +115,73 @@ public class HowAreYouQuestionnaire extends AppCompatActivity {
                     main.startAnimation(shake);
 
                     Toast.makeText(getApplicationContext(), R.string.toast_all_fields_requires, Toast.LENGTH_SHORT).show();
+                } else {
+                    Model model = RingoStarRDF4J.loadModelFromFile(getApplicationContext(), "kg.ttl");
+
+                    LocalDate today = LocalDate.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    String formattedToday = today.format(formatter);
+
+                    IRI nodeQuestionnaireIRI = Values.iri(RingoStarRDF4J.nodeNS, "questionnaire" + UUID.randomUUID());
+
+                    model.add(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.relationCompile, nodeQuestionnaireIRI);
+                    model.add(nodeQuestionnaireIRI, RingoStarRDF4J.propertyName, Values.literal("How are you today?"));
+                    model.add(nodeQuestionnaireIRI, RingoStarRDF4J.propertyDate, Values.literal(formattedToday));
+
+                    IRI nodeFirstQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
+                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("How do you feel?"));
+                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(feel));
+
+                    IRI nodeSecondQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
+                    model.add(nodeSecondQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Do you notice a lack of energy?"));
+                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(lackEnergy ? "Yes" : "No"));
+
+                    IRI nodeThirdQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
+                    model.add(nodeThirdQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Do you notice mental confusion?"));
+                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(mentalConfusion ? "Yes" : "No"));
+
+                    IRI nodeFourthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
+                    model.add(nodeFourthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("How stressed do you feel?"));
+                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(stressed));
+
+                    IRI nodeFifthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
+                    model.add(nodeFifthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Blood sugar"));
+                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(bloodSugar));
+
+                    IRI nodeSixthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
+                    model.add(nodeSixthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Pressure"));
+                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(pressure));
+
+                    IRI nodeSeventhQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
+                    model.add(nodeSeventhQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Physical activity"));
+                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(physicalActivity));
+
+                    IRI nodeEighthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
+                    model.add(nodeEighthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Do you eat meals regularly?"));
+                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(mealsRegularly ? "Yes" : "No"));
+
+                    IRI nodeNinthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
+                    model.add(nodeNinthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Have you consumed sweets of sugary drinks?"));
+                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(sugaryConsumed ? "Yes" : "No"));
+
+                    model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeFirstQuestionIRI);
+                    model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeSecondQuestionIRI);
+                    model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeThirdQuestionIRI);
+                    model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeFourthQuestionIRI);
+                    model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeFifthQuestionIRI);
+                    model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeSixthQuestionIRI);
+                    model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeSeventhQuestionIRI);
+                    model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeEighthQuestionIRI);
+                    model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeNinthQuestionIRI);
+
+                    new Thread(() -> {
+                        RingoStarRDF4J.saveModelToFile(model, getApplicationContext(), "kg.ttl");
+
+                        runOnUiThread(() -> {
+                            Toast.makeText(getApplicationContext(), "Questionnaire submitted", Toast.LENGTH_SHORT).show();
+                            finish();
+                        });
+                    }).start();
                 }
             }
         });

@@ -34,10 +34,9 @@ import com.example.ringo_star.data.entity.User;
 import com.example.ringo_star.enumeration.BloodGroup;
 import com.example.ringo_star.enumeration.Gender;
 import com.example.ringo_star.utils.PinUtils;
-import com.example.ringo_star.utils.RingoStarRD4F;
+import com.example.ringo_star.utils.RingoStarRDF4J;
 import com.kevalpatel2106.rulerpicker.RulerValuePicker;
 
-import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -293,29 +292,28 @@ public class UserInfoActivity extends AppCompatActivity {
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                         String formattedToday = today.format(formatter);
 
-                        if(RingoStarRD4F.fileExists(getApplicationContext(), "kg.ttl")) {
-                            Model model = RingoStarRD4F.loadModelFromFile(getApplicationContext(), "kg.ttl");
+                        if(RingoStarRDF4J.fileExists(getApplicationContext(), "kg.ttl")) {
+                            Model model = RingoStarRDF4J.loadModelFromFile(getApplicationContext(), "kg.ttl");
 
-                            model.forEach(System.out::println);
-
-                            Optional<String> lastSmokeRecordNode = RingoStarRD4F.getLiteralValue(model, RingoStarRD4F.nodeUserIRI, RingoStarRD4F.propertyLastSmokeRecordIRI);
-                            Optional<String> lastWeightRecordNode = RingoStarRD4F.getLiteralValue(model, RingoStarRD4F.nodeUserIRI, RingoStarRD4F.propertyLastWeightRecordIRI);
+                            Optional<String> lastSmokeRecordNode = RingoStarRDF4J.getLiteralValue(model, RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.propertyLastSmokeRecordIRI);
+                            Optional<String> lastWeightRecordNode = RingoStarRDF4J.getLiteralValue(model, RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.propertyLastWeightRecordIRI);
 
                             lastSmokeRecordNode.ifPresentOrElse(
                                 value -> {
-                                    Optional<String> lastSmokeRecordNodeValue = RingoStarRD4F.getLiteralValue(model, Values.iri(RingoStarRD4F.nodeNS, value), RingoStarRD4F.propertyValue);
+                                    Optional<String> lastSmokeRecordNodeValue = RingoStarRDF4J.getLiteralValue(model, Values.iri(RingoStarRDF4J.nodeNS, value), RingoStarRDF4J.propertyValue);
 
                                     lastSmokeRecordNodeValue.ifPresentOrElse(
                                         value1 -> {
                                             if(!String.valueOf(smoker).equals(value1)) {
                                                 UUID randomUUID = UUID.randomUUID();
 
-                                                IRI nodeSmokeRecordIRI = Values.iri(RingoStarRD4F.nodeNS, "smokeRecord" + randomUUID);
-                                                model.add(RingoStarRD4F.nodeUserIRI, RingoStarRD4F.relationCarry, nodeSmokeRecordIRI);
-                                                model.remove(RingoStarRD4F.nodeUserIRI, RingoStarRD4F.propertyLastSmokeRecordIRI, null);
-                                                model.add(RingoStarRD4F.nodeUserIRI, RingoStarRD4F.propertyLastSmokeRecordIRI, Values.literal("smokeRecord" + randomUUID));
-                                                model.add(nodeSmokeRecordIRI, RingoStarRD4F.propertyValue, Values.literal(smoker));
-                                                model.add(nodeSmokeRecordIRI, RingoStarRD4F.propertyDate, Values.literal(formattedToday));
+                                                IRI nodeSmokeRecordIRI = Values.iri(RingoStarRDF4J.nodeNS, "smokeRecord" + randomUUID);
+
+                                                model.add(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.relationCarry, nodeSmokeRecordIRI);
+                                                model.remove(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.propertyLastSmokeRecordIRI, null);
+                                                model.add(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.propertyLastSmokeRecordIRI, Values.literal("smokeRecord" + randomUUID));
+                                                model.add(nodeSmokeRecordIRI, RingoStarRDF4J.propertyValue, Values.literal(smoker));
+                                                model.add(nodeSmokeRecordIRI, RingoStarRDF4J.propertyDate, Values.literal(formattedToday));
                                             }
                                         },
                                         () -> {}
@@ -326,19 +324,20 @@ public class UserInfoActivity extends AppCompatActivity {
 
                             lastWeightRecordNode.ifPresentOrElse(
                                 value -> {
-                                    Optional<String> lastWeightRecordNodeValue = RingoStarRD4F.getLiteralValue(model, Values.iri(RingoStarRD4F.nodeNS, value), RingoStarRD4F.propertyValue);
+                                    Optional<String> lastWeightRecordNodeValue = RingoStarRDF4J.getLiteralValue(model, Values.iri(RingoStarRDF4J.nodeNS, value), RingoStarRDF4J.propertyValue);
 
                                     lastWeightRecordNodeValue.ifPresentOrElse(
                                         value1 -> {
                                             if(!String.valueOf(smoker).equals(value1)) {
                                                 UUID randomUUID = UUID.randomUUID();
 
-                                                IRI nodeWeightRecordIRI = Values.iri(RingoStarRD4F.nodeNS, "weightRecord" + randomUUID);
-                                                model.add(RingoStarRD4F.nodeUserIRI, RingoStarRD4F.relationCarry, nodeWeightRecordIRI);
-                                                model.remove(RingoStarRD4F.nodeUserIRI, RingoStarRD4F.propertyLastWeightRecordIRI, null);
-                                                model.add(RingoStarRD4F.nodeUserIRI, RingoStarRD4F.propertyLastWeightRecordIRI, Values.literal("weightRecord" + randomUUID));
-                                                model.add(nodeWeightRecordIRI, RingoStarRD4F.propertyValue, Values.literal(weight));
-                                                model.add(nodeWeightRecordIRI, RingoStarRD4F.propertyDate, Values.literal(formattedToday));
+                                                IRI nodeWeightRecordIRI = Values.iri(RingoStarRDF4J.nodeNS, "weightRecord" + randomUUID);
+
+                                                model.add(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.relationCarry, nodeWeightRecordIRI);
+                                                model.remove(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.propertyLastWeightRecordIRI, null);
+                                                model.add(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.propertyLastWeightRecordIRI, Values.literal("weightRecord" + randomUUID));
+                                                model.add(nodeWeightRecordIRI, RingoStarRDF4J.propertyValue, Values.literal(weight));
+                                                model.add(nodeWeightRecordIRI, RingoStarRDF4J.propertyDate, Values.literal(formattedToday));
                                             }
                                         },
                                         () -> {}
@@ -347,35 +346,35 @@ public class UserInfoActivity extends AppCompatActivity {
                                 () -> {}
                             );
 
-                            RingoStarRD4F.saveModelToFile(model, getApplicationContext(), "kg.ttl");
+                            RingoStarRDF4J.saveModelToFile(model, getApplicationContext(), "kg.ttl");
                         } else {
                             Model model = new LinkedHashModel();
 
-                            model.add(RingoStarRD4F.nodeUserIRI, RingoStarRD4F.propertyFirstnameIRI, Values.literal(firstname));
-                            model.add(RingoStarRD4F.nodeUserIRI, RingoStarRD4F.propertyLastnameIRI, Values.literal(lastname));
-                            model.add(RingoStarRD4F.nodeUserIRI, RingoStarRD4F.propertyGenderIRI, Values.literal(gender));
-                            model.add(RingoStarRD4F.nodeUserIRI, RingoStarRD4F.propertyBirthdayIRI, Values.literal(LocalDate.of(selectedYear, selectedMonth, selectedDay)));
-                            model.add(RingoStarRD4F.nodeUserIRI, RingoStarRD4F.propertyHeightIRI, Values.literal(height));
-                            model.add(RingoStarRD4F.nodeUserIRI, RingoStarRD4F.propertyBloodGroupIRI, Values.literal(bloodGroup));
+                            model.add(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.propertyFirstnameIRI, Values.literal(firstname));
+                            model.add(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.propertyLastnameIRI, Values.literal(lastname));
+                            model.add(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.propertyGenderIRI, Values.literal(gender));
+                            model.add(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.propertyBirthdayIRI, Values.literal(LocalDate.of(selectedYear, selectedMonth, selectedDay)));
+                            model.add(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.propertyHeightIRI, Values.literal(height));
+                            model.add(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.propertyBloodGroupIRI, Values.literal(bloodGroup));
 
                             UUID randomUUID = UUID.randomUUID();
 
-                            IRI nodeSmokeRecordIRI = Values.iri(RingoStarRD4F.nodeNS, "smokeRecord" + randomUUID);
-                            IRI nodeWeightRecordIRI = Values.iri(RingoStarRD4F.nodeNS, "weightRecord" + randomUUID);
+                            IRI nodeSmokeRecordIRI = Values.iri(RingoStarRDF4J.nodeNS, "smokeRecord" + randomUUID);
+                            IRI nodeWeightRecordIRI = Values.iri(RingoStarRDF4J.nodeNS, "weightRecord" + randomUUID);
 
-                            model.add(RingoStarRD4F.nodeUserIRI, RingoStarRD4F.relationCarry, nodeSmokeRecordIRI);
-                            model.add(RingoStarRD4F.nodeUserIRI, RingoStarRD4F.relationCarry, nodeWeightRecordIRI);
+                            model.add(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.relationCarry, nodeSmokeRecordIRI);
+                            model.add(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.relationCarry, nodeWeightRecordIRI);
 
-                            model.add(RingoStarRD4F.nodeUserIRI, RingoStarRD4F.propertyLastSmokeRecordIRI, Values.literal("smokeRecord" + randomUUID));
-                            model.add(RingoStarRD4F.nodeUserIRI, RingoStarRD4F.propertyLastWeightRecordIRI, Values.literal("weightRecord" + randomUUID));
+                            model.add(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.propertyLastSmokeRecordIRI, Values.literal("smokeRecord" + randomUUID));
+                            model.add(RingoStarRDF4J.nodeUserIRI, RingoStarRDF4J.propertyLastWeightRecordIRI, Values.literal("weightRecord" + randomUUID));
 
-                            model.add(nodeSmokeRecordIRI, RingoStarRD4F.propertyValue, Values.literal(smoker));
-                            model.add(nodeSmokeRecordIRI, RingoStarRD4F.propertyDate, Values.literal(formattedToday));
+                            model.add(nodeSmokeRecordIRI, RingoStarRDF4J.propertyValue, Values.literal(smoker));
+                            model.add(nodeSmokeRecordIRI, RingoStarRDF4J.propertyDate, Values.literal(formattedToday));
 
-                            model.add(nodeWeightRecordIRI, RingoStarRD4F.propertyValue, Values.literal(weight));
-                            model.add(nodeWeightRecordIRI, RingoStarRD4F.propertyDate, Values.literal(formattedToday));
+                            model.add(nodeWeightRecordIRI, RingoStarRDF4J.propertyValue, Values.literal(weight));
+                            model.add(nodeWeightRecordIRI, RingoStarRDF4J.propertyDate, Values.literal(formattedToday));
 
-                            RingoStarRD4F.saveModelToFile(model, getApplicationContext(), "kg.ttl");
+                            RingoStarRDF4J.saveModelToFile(model, getApplicationContext(), "kg.ttl");
                         }
 
                         new Thread(() -> {
