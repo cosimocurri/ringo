@@ -17,7 +17,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.StringWriter;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class RingoStarRDF4J {
     public static String ns = "http://example.org/";
@@ -54,6 +58,21 @@ public class RingoStarRDF4J {
                 .findFirst();
     }
 
+    public static Value getFirstNodeRelation(Model model, IRI node, IRI predicate) {
+        return model.filter(node, predicate, null)
+                .stream()
+                .map(Statement::getObject)
+                .findFirst()
+                .orElse(null);
+    }
+
+    public static Set<Value> getAllNodeRelations(Model model, IRI node, IRI predicate) {
+        return model.filter(node, predicate, null)
+                .stream()
+                .map(Statement::getObject)
+                .collect(Collectors.toSet());
+    }
+
     public static void saveModelToFile(Model model, Context context, String filePath) {
         File file = new File(context.getFilesDir(), filePath);
 
@@ -87,5 +106,81 @@ public class RingoStarRDF4J {
         Rio.write(model, writer, RDFFormat.TURTLE);
 
         return writer.toString();
+    }
+
+    public static String promptifyModel(Model model) {
+        String prompt = "";
+
+        String firstname = "";
+        String lastname = "";
+        String gender = "";
+        String birthday = "";
+        String height = "";
+        String bloodGroup = "";
+
+        StringBuilder weightRecords = new StringBuilder();
+        StringBuilder smokeRecords = new StringBuilder();
+
+        StringBuilder questionnaires = new StringBuilder();
+
+        for(Statement statement : model) {
+            if(Objects.equals(statement.getPredicate().stringValue(), propertyFirstnameIRI.stringValue()))
+                firstname = statement.getObject().stringValue();
+            else if(Objects.equals(statement.getPredicate().stringValue(), propertyLastnameIRI.stringValue()))
+                lastname = statement.getObject().stringValue();
+            else if(Objects.equals(statement.getPredicate().stringValue(), propertyGenderIRI.stringValue()))
+                gender = statement.getObject().stringValue();
+            else if(Objects.equals(statement.getPredicate().stringValue(), propertyBirthdayIRI.stringValue()))
+                birthday = statement.getObject().stringValue();
+            else if(Objects.equals(statement.getPredicate().stringValue(), propertyHeightIRI.stringValue()))
+                height = statement.getObject().stringValue() + " cm";
+            else if(Objects.equals(statement.getPredicate().stringValue(), propertyBloodGroupIRI.stringValue())) {
+                bloodGroup = statement.getObject().stringValue()
+                        .replace("zero", "0")
+                        .replace("_positive", "+")
+                        .replace("_negative", "-");
+            } else if(Objects.equals(statement.getPredicate().stringValue(), relationCarry.stringValue())) {
+                String value = getFirstNodeRelation(model, (IRI) statement.getObject(), propertyValue).stringValue();
+                String date = getFirstNodeRelation(model, (IRI) statement.getObject(), propertyDate).stringValue();
+
+                if(value.equals("true") || value.equals("false")) {
+                    String smoke = "";
+
+                    switch(value) {
+                        case "true":
+                            smoke = "smokes";
+                            break;
+
+                        case "false":
+                            smoke = "doesn't smoke";
+                            break;
+                    }
+
+                    smokeRecords.append(", in ").append(date).append(" ").append(smoke);
+                } else {
+                    weightRecords.append(", weight ").append(value).append(" kg in ").append(date);
+                }
+            } else if(Objects.equals(statement.getPredicate().stringValue(), relationCompile.stringValue())) {
+                String name = getFirstNodeRelation(model, (IRI) statement.getObject(), propertyName).stringValue();
+                String date = getFirstNodeRelation(model, (IRI) statement.getObject(), propertyDate).stringValue();
+
+                questionnaires.append("In " + date + " compiled a questionnaire called " + name + " with the following results: ");
+
+                Set<Value> relationsSet = getAllNodeRelations(model, (IRI) statement.getObject(), relationHas);
+
+                for(Value relation : relationsSet) {
+                    try {
+                        String text = getFirstNodeRelation(model, (IRI) relation, propertyText).stringValue();
+                        String value = getFirstNodeRelation(model, (IRI) relation, propertyValue).stringValue();
+
+                        questionnaires.append(text + " " + value + ". ");
+                    } catch(Exception ignored) {}
+                }
+            }
+
+            prompt = "The patient name is " + firstname + " " + lastname + ", " + gender.toLowerCase() + ", born in " + birthday + ", height " + height + ", blood group " + bloodGroup + weightRecords + smokeRecords + ". " + questionnaires;
+        }
+
+        return prompt;
     }
 }

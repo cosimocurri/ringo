@@ -113,15 +113,15 @@ public class HbA1cQuestionnaire extends AppCompatActivity {
 
                     IRI nodeSecondQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeSecondQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("How many episodes of hypoglycemia did you have last month?"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(hypoglycemia));
+                    model.add(nodeSecondQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(hypoglycemia));
 
                     IRI nodeThirdQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeThirdQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("How many episodes of hyperglycemia did you have last month?"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(hyperglycemia));
+                    model.add(nodeThirdQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(hyperglycemia));
 
                     IRI nodeFourthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeFourthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("HbA1c"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(measure));
+                    model.add(nodeFourthQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(measure));
 
                     model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeFirstQuestionIRI);
                     model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeSecondQuestionIRI);

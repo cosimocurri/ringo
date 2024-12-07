@@ -328,7 +328,7 @@ public class UserInfoActivity extends AppCompatActivity {
 
                                     lastWeightRecordNodeValue.ifPresentOrElse(
                                         value1 -> {
-                                            if(!String.valueOf(smoker).equals(value1)) {
+                                            if(!String.valueOf(weight).equals(value1)) {
                                                 UUID randomUUID = UUID.randomUUID();
 
                                                 IRI nodeWeightRecordIRI = Values.iri(RingoStarRDF4J.nodeNS, "weightRecord" + randomUUID);
@@ -387,9 +387,13 @@ public class UserInfoActivity extends AppCompatActivity {
                                 databaseClient.getDatabase().userDAO().update(user);
                             }
 
-                            startActivity(new Intent(UserInfoActivity.this, HomeActivity.class));
-                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                            finish();
+                            Intent intent = getBaseContext()
+                                    .getPackageManager()
+                                    .getLaunchIntentForPackage(getBaseContext().getPackageName());
+
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            Runtime.getRuntime().exit(0);
                         }).start();
                     } catch(Exception ignored) {}
                 }

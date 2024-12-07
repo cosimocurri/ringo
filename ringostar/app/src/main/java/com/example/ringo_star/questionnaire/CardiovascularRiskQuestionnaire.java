@@ -107,11 +107,11 @@ public class CardiovascularRiskQuestionnaire extends AppCompatActivity {
 
                     IRI nodeSecondQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeSecondQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Have you experienced chest pain or shortness of breath during exercise?"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(chestPain ? "Yes" : "No"));
+                    model.add(nodeSecondQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(chestPain ? "Yes" : "No"));
 
                     IRI nodeThirdQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeThirdQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Are you following a diet to reduce lipids?"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(dietLipids ? "Yes" : "No"));
+                    model.add(nodeThirdQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(dietLipids ? "Yes" : "No"));
 
                     model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeFirstQuestionIRI);
                     model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeSecondQuestionIRI);

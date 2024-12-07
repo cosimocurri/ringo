@@ -88,19 +88,19 @@ public class SymptomsComplicationsQuestionnaire extends AppCompatActivity {
 
                 IRI nodeSecondQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                 model.add(nodeSecondQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Have you had recurrent infections in the past month?"));
-                model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(infections ? "Yes" : "No"));
+                model.add(nodeSecondQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(infections ? "Yes" : "No"));
 
                 IRI nodeThirdQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                 model.add(nodeThirdQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Have you experienced pain, tingling, or loss of sensation in your feet?"));
-                model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(lossSensation ? "Yes" : "No"));
+                model.add(nodeThirdQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(lossSensation ? "Yes" : "No"));
 
                 IRI nodeFourthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                 model.add(nodeFourthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Have you observed wounds or ulcers on your feet that are not healing?"));
-                model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(woundsFeet ? "Yes" : "No"));
+                model.add(nodeFourthQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(woundsFeet ? "Yes" : "No"));
 
                 IRI nodeFifthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                 model.add(nodeFifthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Have you noticed swelling or pain in your joints?"));
-                model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(joints ? "Yes" : "No"));
+                model.add(nodeFifthQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(joints ? "Yes" : "No"));
 
                 model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeFirstQuestionIRI);
                 model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeSecondQuestionIRI);

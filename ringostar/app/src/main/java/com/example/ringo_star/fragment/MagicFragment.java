@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,7 +21,6 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -29,8 +29,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ringo_star.MainActivity;
 import com.example.ringo_star.R;
+import com.example.ringo_star.ReportCreatedActivity;
+import com.example.ringo_star.data.DatabaseClient;
+import com.example.ringo_star.data.entity.User;
 import com.example.ringo_star.llm.InferenceModel;
+import com.example.ringo_star.utils.PDFUtils;
 import com.example.ringo_star.utils.RingoStarRDF4J;
 
 import org.eclipse.rdf4j.model.Model;
@@ -165,14 +170,8 @@ public class MagicFragment extends Fragment {
 
             handleRadioGroup(false);
             btnDownloadModel.setEnabled(false);
-            imgMagic.setImageResource(R.drawable.ic_loading);
+            imgMagic.setImageResource(R.drawable.hourglass);
             imgMagic.setClickable(false);
-
-            ObjectAnimator rotateAnimation = ObjectAnimator.ofFloat(imgMagic, "rotation", 0f, 360f);
-            rotateAnimation.setDuration(1000);
-            rotateAnimation.setRepeatCount(ObjectAnimator.INFINITE);
-            rotateAnimation.setInterpolator(new LinearInterpolator());
-            rotateAnimation.start();
 
             ExecutorService executor = Executors.newSingleThreadExecutor();
             Handler handler = new Handler(Looper.getMainLooper());
@@ -188,7 +187,7 @@ public class MagicFragment extends Fragment {
 
                     Model model = RingoStarRDF4J.loadModelFromFile(requireContext(), "kg.ttl");
 
-                    String prompt = "Read the following knowledge graph and talk about the patient's diabetes while pretending to be a doctor.\n" + RingoStarRDF4J.stringifyModel(model);
+                    String prompt = "Briefly describe the following information as if you were a doctor:\n" + RingoStarRDF4J.promptifyModel(model);
                     String response = "";
 
                     try {
@@ -200,8 +199,25 @@ public class MagicFragment extends Fragment {
                     String finalResponse = response;
 
                     handler.post(() -> {
-                        if(!finalResponse.isEmpty())
-                            System.out.println("**********************" + finalResponse);
+                        if(!finalResponse.isEmpty()) {
+                            new Thread(() -> {
+                                DatabaseClient databaseClient = DatabaseClient.getInstance(requireContext());
+                                User user = databaseClient.getDatabase().userDAO().getUser();
+
+                                requireActivity().runOnUiThread(() -> {
+                                    PDFUtils.createPdf(requireContext(), user, finalResponse);
+
+                                    handleRadioGroup(true);
+                                    btnDownloadModel.setEnabled(true);
+                                    imgMagic.setImageResource(R.drawable.ic_magic);
+                                    imgMagic.setClickable(true);
+
+                                    startActivity(new Intent(requireActivity(), ReportCreatedActivity.class));
+                                    requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                                    requireActivity().finish();
+                                });
+                            }).start();
+                        }
                     });
                 } catch(IllegalArgumentException ignored) {
                     handler.post(() -> requireActivity().runOnUiThread(() -> {

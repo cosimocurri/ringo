@@ -66,6 +66,8 @@ dependencies {
     implementation libs.rdf4j.rio.turtle
     implementation libs.xercesimpl
 
+    implementation libs.itext7.core
+
     configurations.implementation {
         exclude group: 'commons-codec', module: 'commons-codec'
         exclude group: 'org.apache.httpcomponents', module: 'httpcore-osgi'

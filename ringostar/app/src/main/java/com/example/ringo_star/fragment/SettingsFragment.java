@@ -13,14 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
-import com.example.ringo_star.MainActivity;
-import com.example.ringo_star.PinActivity;
 import com.example.ringo_star.R;
 import com.example.ringo_star.UserInfoActivity;
 import com.example.ringo_star.data.DatabaseClient;
 import com.example.ringo_star.data.dao.UserDAO;
-import com.example.ringo_star.data.entity.User;
+
+import java.io.File;
 
 public class SettingsFragment extends Fragment {
     Button btnUpdateProfile;
@@ -85,6 +85,15 @@ public class SettingsFragment extends Fragment {
                         builder.setTitle("Are you sure?");
 
                         builder.setPositiveButton("Yes", (dialog, which) -> {
+                            btnUpdateProfile.setEnabled(false);
+                            btnCloseApp.setEnabled(false);
+                            btnDeleteAll.setEnabled(false);
+
+                            Toast.makeText(requireContext(), "Please wait...", Toast.LENGTH_SHORT).show();
+
+                            File file = new File(requireContext().getFilesDir(), "kg.ttl");
+                            file.delete();
+
                             new Thread(userDAO::delete).start();
 
                             dialog.dismiss();

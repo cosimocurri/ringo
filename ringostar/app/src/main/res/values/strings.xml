@@ -150,4 +150,6 @@
     <string name="do_you_regularly_take_high_blood_pressure_medications">Do you regularly take high blood pressure medications?</string>
     <string name="have_you_ever_had_high_blood_sugar_levels_for_example_during_a_medical_visit_during_an_illness">Have you ever had high blood sugar levels?</string>
     <string name="do_you_have_any_family_members_with_type_1_or_type_2_diabetes">Do you have any family members with type 1 or type 2 diabetes?</string>
+    <string name="loading">Loading</string>
+    <string name="the_report_has_been_created_successfully_in_the_documents_folder_of_your_android_device">The report has been created successfully in the documents folder of your Android device.</string>
 </resources>

@@ -117,23 +117,23 @@ public class LifestyleQuestionnaire extends AppCompatActivity {
 
                     IRI nodeSecondQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeSecondQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("How often do you eat sugary foods?"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(sugaryFoods));
+                    model.add(nodeSecondQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(sugaryFoods));
 
                     IRI nodeThirdQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeThirdQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Have you made any changes to your diet since the last questionnaire?"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(dietChanged ? "Yes" : "No"));
+                    model.add(nodeThirdQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(dietChanged ? "Yes" : "No"));
 
                     IRI nodeFourthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeFourthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("How often do you work out?"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(numberExercises));
+                    model.add(nodeFourthQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(numberExercises));
 
                     IRI nodeFifthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeFifthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Do you sleep at least 7 hours per night?"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(sleep ? "Yes" : "No"));
+                    model.add(nodeFifthQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(sleep ? "Yes" : "No"));
 
                     IRI nodeSixthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeSixthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Have you experienced significant periods of stress recently?"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(stress ? "Yes" : "No"));
+                    model.add(nodeSixthQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(stress ? "Yes" : "No"));
 
                     model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeFirstQuestionIRI);
                     model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeSecondQuestionIRI);

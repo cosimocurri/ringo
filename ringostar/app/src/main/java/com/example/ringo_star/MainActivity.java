@@ -14,6 +14,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.ringo_star.data.DatabaseClient;
 import com.example.ringo_star.data.entity.User;
+import com.example.ringo_star.utils.RingoStarRDF4J;
+
+import org.eclipse.rdf4j.model.Model;
 
 public class MainActivity extends AppCompatActivity {
     @Override

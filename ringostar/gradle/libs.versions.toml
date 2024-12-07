@@ -1,6 +1,9 @@
 [versions]
 agp = "8.6.0"
 bubbletabbar = "1.0.8"
+graphvizJava = "0.18.1"
+itext7Core = "7.2.3"
+jgraphtCore = "1.5.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
@@ -15,6 +18,11 @@ xercesimpl = "2.12.2"
 
 [libraries]
 bubbletabbar = { module = "io.ak1:bubbletabbar", version.ref = "bubbletabbar" }
+graphviz-java = { module = "guru.nidi:graphviz-java", version.ref = "graphvizJava" }
+itext7-core = { module = "com.itextpdf:itext7-core", version.ref = "itext7Core" }
+jgrapht-core = { module = "org.jgrapht:jgrapht-core", version.ref = "jgraphtCore" }
+jgrapht-ext = { module = "org.jgrapht:jgrapht-ext", version.ref = "jgraphtCore" }
+jgrapht-io = { module = "org.jgrapht:jgrapht-io", version.ref = "jgraphtCore" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }

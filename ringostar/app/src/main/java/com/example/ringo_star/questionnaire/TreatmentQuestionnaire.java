@@ -112,19 +112,19 @@ public class TreatmentQuestionnaire extends AppCompatActivity {
 
                     IRI nodeSecondQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeSecondQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Have you had difficulty following the schedule or dosages?"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(difficultSchedule ? "Yes" : "No"));
+                    model.add(nodeSecondQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(difficultSchedule ? "Yes" : "No"));
 
                     IRI nodeThirdQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeThirdQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Side effects"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(sideEffects));
+                    model.add(nodeThirdQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(sideEffects));
 
                     IRI nodeFourthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeFourthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Have you recently adjusted the dose of insulin or other medications?"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(changeInsulin ? "Yes" : "No"));
+                    model.add(nodeFourthQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(changeInsulin ? "Yes" : "No"));
 
                     IRI nodeFifthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeFifthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Are you using a continuous glucose monitoring device?"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(monitorGlucose ? "Yes" : "No"));
+                    model.add(nodeFifthQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(monitorGlucose ? "Yes" : "No"));
 
                     model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeFirstQuestionIRI);
                     model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeSecondQuestionIRI);

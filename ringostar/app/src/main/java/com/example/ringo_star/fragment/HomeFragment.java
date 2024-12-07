@@ -18,6 +18,7 @@ import com.example.ringo_star.questionnaire.HowAreYouQuestionnaire;
 import com.example.ringo_star.questionnaire.LifestyleQuestionnaire;
 import com.example.ringo_star.questionnaire.SymptomsComplicationsQuestionnaire;
 import com.example.ringo_star.questionnaire.TreatmentQuestionnaire;
+import com.example.ringo_star.utils.PDFUtils;
 
 public class HomeFragment extends Fragment {
     public HomeFragment() {}

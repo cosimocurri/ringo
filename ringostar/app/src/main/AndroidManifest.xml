@@ -24,6 +24,9 @@
         android:theme="@style/Theme.Ringostar"
         tools:targetApi="31">
         <activity
+            android:name=".ReportCreatedActivity"
+            android:exported="false" />
+        <activity
             android:name=".questionnaire.FINDRISCQuestionnaire"
             android:exported="false" />
         <activity

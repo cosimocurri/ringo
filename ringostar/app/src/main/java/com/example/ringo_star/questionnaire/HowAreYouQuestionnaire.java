@@ -134,35 +134,35 @@ public class HowAreYouQuestionnaire extends AppCompatActivity {
 
                     IRI nodeSecondQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeSecondQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Do you notice a lack of energy?"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(lackEnergy ? "Yes" : "No"));
+                    model.add(nodeSecondQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(lackEnergy ? "Yes" : "No"));
 
                     IRI nodeThirdQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeThirdQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Do you notice mental confusion?"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(mentalConfusion ? "Yes" : "No"));
+                    model.add(nodeThirdQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(mentalConfusion ? "Yes" : "No"));
 
                     IRI nodeFourthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeFourthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("How stressed do you feel?"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(stressed));
+                    model.add(nodeFourthQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(stressed));
 
                     IRI nodeFifthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeFifthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Blood sugar"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(bloodSugar));
+                    model.add(nodeFifthQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(bloodSugar));
 
                     IRI nodeSixthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeSixthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Pressure"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(pressure));
+                    model.add(nodeSixthQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(pressure));
 
                     IRI nodeSeventhQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeSeventhQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Physical activity"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(physicalActivity));
+                    model.add(nodeSeventhQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(physicalActivity));
 
                     IRI nodeEighthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeEighthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Do you eat meals regularly?"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(mealsRegularly ? "Yes" : "No"));
+                    model.add(nodeEighthQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(mealsRegularly ? "Yes" : "No"));
 
                     IRI nodeNinthQuestionIRI = Values.iri(RingoStarRDF4J.nodeNS, "question" + UUID.randomUUID());
                     model.add(nodeNinthQuestionIRI, RingoStarRDF4J.propertyText, Values.literal("Have you consumed sweets of sugary drinks?"));
-                    model.add(nodeFirstQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(sugaryConsumed ? "Yes" : "No"));
+                    model.add(nodeNinthQuestionIRI, RingoStarRDF4J.propertyValue, Values.literal(sugaryConsumed ? "Yes" : "No"));
 
                     model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeFirstQuestionIRI);
                     model.add(nodeQuestionnaireIRI, RingoStarRDF4J.relationHas, nodeSecondQuestionIRI);
